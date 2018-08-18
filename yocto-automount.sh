@@ -56,6 +56,7 @@ while true; do
 		if ! ls /media/$username/$prev_drive_name 1>/dev/null 2>/dev/null ; then
 			echo "Device unmount failure. Forcing unmount.."
 			umount -f -l /media/$username/$prev_drive_name
+			rm -rf /media/$username/$prev_drive_name
 		fi
 
 		if [ ! -z "$(ls -A /run/media 2>/dev/null)" ]; then
