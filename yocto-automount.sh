@@ -47,7 +47,7 @@ while true; do
                 drive_path=""
         fi
 
-				# Extract drive name sdX or mmcblkX etc.
+	# Extract drive name sdX or mmcblkX etc.
         drive_name=`echo $drive_path | sed -e "s/^\/dev\///"`
 
 	if [ -z "$drive_path" ]; then
@@ -62,7 +62,8 @@ while true; do
 		if [ ! -z "$(ls -A /run/media 2>/dev/null)" ]; then
 			# Drive is not detected but /run/media is non empty
 			echo "USB drive is not detected, but /run/media/ is not empty."
-			echo "Clearing /run/media"
+
+			echo "Clearing /run/media/"
 			rm -rf /run/media/*
 		fi
 
@@ -76,12 +77,16 @@ while true; do
 		else
 			# /run/media is non-empty
 			echo "USB drive detected, /run/media is non empty."
-			echo "Remounting to /media/$username"
 
-			mkdir -p /media/$username/$drive_name
-			umount /run/media/$drive_name
-			rm -rf /run/media/$drive_name
-			mount /dev/$drive_name /media/$username/$drive_name
+			if [ -d "/run/media/$drive_name" ]; then
+				echo "Remounting to /media/$username"
+            	
+                        	mkdir -p /media/$username/$drive_name
+                        	umount /run/media/$drive_name
+                        	rm -rf /run/media/$drive_name
+                        	mount /dev/$drive_name /media/$username/$drive_name
+			fi
+			
 		fi
 
 	fi
