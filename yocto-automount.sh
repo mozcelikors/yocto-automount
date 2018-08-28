@@ -63,7 +63,7 @@ while true; do
 			# Drive is not detected but /run/media is non empty
 			echo "USB drive is not detected, but /run/media/ is not empty."
 			echo "Clearing /run/media"
-			rm -rf /run/media/*
+			rm -rf /run/media/sd*
 		fi
 
 	else
