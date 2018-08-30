@@ -1,0 +1,8 @@
+[Unit]
+Description=yocto-automount Service
+
+[Service]
+ExecStart=/bin/bash -c "/opt/yocto-automount/yocto-automount.sh"
+
+[Install]
+WantedBy=multi-user.target
